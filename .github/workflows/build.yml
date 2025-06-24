@@ -24,7 +24,7 @@ jobs:
         run: ./gradlew build
 
       - name: Publish to Modrinth
-        uses: tr7zw/modrinth-action@v1.5.0
+        uses: tr7zw/modrinth-action@v1.4.1
         with:
           token: ${{ secrets.MODRINTH_TOKEN }}
           project_id: tempt-range-extender  # <-- use your Modrinth project slug here
