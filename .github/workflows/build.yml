@@ -27,13 +27,10 @@ jobs:
         uses: tr7zw/modrinth-action@v1.5.0
         with:
           token: ${{ secrets.MODRINTH_TOKEN }}
-          project_id: tempt-range-extender  # replace with your actual slug
-          version: v1.0.2
-          version_name: "Tempt Range Extender v1.0.2"
+          project_id: tempt-range-extender  # <-- use your Modrinth project slug here
+          version: v1.0.3
+          version_name: "Tempt Range Extender v1.0.3"
           version_type: release
-          game_versions: 
-            - "1.21"
-          loaders: 
-            - "fabric"
-          files: |
-            build/libs/*.jar
+          game_versions: "1.21"
+          loaders: "fabric"
+          files: "build/libs/*.jar"
