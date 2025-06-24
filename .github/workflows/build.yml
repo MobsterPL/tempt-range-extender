@@ -1,0 +1,36 @@
+name: Build and Publish Mod
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: 17
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Build mod
+        run: ./gradlew build
+
+      - name: Publish to Modrinth
+        uses: tr7zw/modrinth-action@v1.5.0
+        with:
+          token: ${{ secrets.MODRINTH_TOKEN }}
+          project_id: tempt-range-extender  # <- Match your Modrinth project slug
+          version: 1.0.0
+          version_name: v1.0.0
+          version_type: release
+          game_versions: ["1.21"]
+          loaders: ["fabric"]
+          files: build/libs/*.jar
